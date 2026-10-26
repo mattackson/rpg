@@ -79,4 +79,3 @@ limit_bottom = 240
 position = Vector2(-8, 14)
 
 [connection signal="on_spell_change" from="." to="CanvasLayer/UI" method="_on_root_on_spell_change"]
-[connection signal="cast" from="Player" to="." method="_on_cast"]

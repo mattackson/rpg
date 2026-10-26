@@ -18,7 +18,6 @@ func roll_loot(position: Vector2, from: String) -> void:
 func _spawn_item(position: Vector2, item_name: String) -> void:
 	var item = _book.instantiate()
 	item.position = position
-	
 	_spawn_root.add_child(item)
 	
 	

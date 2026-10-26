@@ -21,7 +21,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	#Movement.move_player_v1_weird(delta, self)
-	velocity = Input.get_vector("left", "right", "up", "down") * 150
+	velocity = Input.get_vector("left", "right", "up", "down") * 130
 	
 	# max around 120 per process
 	move_and_slide()
