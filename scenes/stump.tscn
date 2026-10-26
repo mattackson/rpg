@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cra0w04r2qgux"]
+
+[ext_resource type="Texture2D" uid="uid://sfk6bjh2leie" path="res://assets/export/stump.png" id="1_c6xkf"]
+
+[node name="Node2D" type="StaticBody2D" unique_id=1000754725]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=512539394]
+texture = ExtResource("1_c6xkf")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1127946352]
+visible = false
+polygon = PackedVector2Array(-10, -1, -8, -1, -8, -2, -6, -2, -6, -3, 3, -3, 3, -2, 4, -2, 4, 0, 5, 0, 5, 2, 6, 2, 6, 3, 7, 3, 7, 4, 8, 4, 8, 6, -13, 6, -13, 4, -12, 4, -12, 3, -11, 3, -11, 2, -10, 2)

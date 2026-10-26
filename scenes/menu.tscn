@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cd4l8pmdg58gj"]
+
+[ext_resource type="Script" uid="uid://cpttqqa2benyt" path="res://scenes/menu.gd" id="1_vjb58"]
+[ext_resource type="Texture2D" uid="uid://q5nr80wlewty" path="res://assets/export/menu.png" id="1_yqeox"]
+
+[node name="Control" type="Control" unique_id=2022079627]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vjb58")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=950707219]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer" unique_id=2060387810]
+visible = false
+layout_mode = 2
+texture = ExtResource("1_yqeox")

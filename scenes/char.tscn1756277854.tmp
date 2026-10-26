@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://jag6nesgi2c5"]
+
+[ext_resource type="Script" uid="uid://dab5511odgahj" path="res://scenes/char.gd" id="1_pkhve"]
+[ext_resource type="Texture2D" uid="uid://18at2fx4fwgs" path="res://assets/export/char.png" id="1_wojmw"]
+
+[sub_resource type="Animation" id="Animation_pkhve"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_wojmw"]
+resource_name = "idle"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.5333333, 3.6333334, 3.7333333, 3.8333333, 3.9333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.9, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_idle_up"
+}, {
+"args": [],
+"method": &"_idle_down"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pkhve"]
+_data = {
+&"RESET": SubResource("Animation_pkhve"),
+&"idle": SubResource("Animation_wojmw")
+}
+
+[node name="Character" type="CharacterBody2D" unique_id=1044619691 groups=["players"]]
+collision_layer = 8
+script = ExtResource("1_pkhve")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=122140493]
+texture = ExtResource("1_wojmw")
+hframes = 8
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="." unique_id=854827997]
+visible = false
+position = Vector2(-1, 1)
+polygon = PackedVector2Array(-2, -12, 4, -12, 4, -11, 5, -11, 5, -10, 6, -10, 6, -9, 7, -9, 7, 4, 4, 4, 4, 6, 3, 6, 3, 4, -2, 4, -2, 6, -3, 6, -3, 4, -5, 4, -5, -8, -4, -8, -4, -10, -3, -10, -3, -11, -2, -11)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=621362874]
+libraries/ = SubResource("AnimationLibrary_pkhve")
+
+[node name="Shadow" type="Polygon2D" parent="." unique_id=976690276]
+color = Color(0.19607843, 0.19607843, 0.19607843, 0.6313726)
+polygon = PackedVector2Array(-5, 7, -5, 8, -6, 8, -6, 10, -5, 10, -5, 11, 5, 11, 5, 10, 6, 10, 6, 8, 5, 8, 5, 7)
+
+[node name="Shadow2" type="Polygon2D" parent="." unique_id=1907522581]
+visible = false
+color = Color(0.19607843, 0.19607843, 0.19607843, 0.6313726)
+polygon = PackedVector2Array(-5, 8, -5, 9, -6, 9, -6, 10, -5, 10, -5, 11, 5, 11, 5, 10, 6, 10, 6, 9, 5, 9, 5, 8)

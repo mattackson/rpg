@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://c1ndc1n5ywep1"]
+
+[ext_resource type="Script" uid="uid://bmh8ce1yyrjev" path="res://scenes/book.gd" id="1_3wpgy"]
+[ext_resource type="Texture2D" uid="uid://bqh5n7n2kofa0" path="res://assets/export/book.png" id="1_ble1a"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3wpgy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ble1a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Book" type="Area2D" unique_id=1108491811]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("1_3wpgy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1159288463]
+sprite_frames = SubResource("SpriteFrames_3wpgy")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=2139693605]
+polygon = PackedVector2Array(-6, -5, 6, -5, 7, -4, 7, 0, 6, 0, 6, 5, 2, 7, -2, 7, -6, 4)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
