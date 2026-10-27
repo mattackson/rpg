@@ -22,7 +22,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 Enemies="*uid://bt6da8ht8dwjq"
-Player="*uid://bl7nluherjpl"
 Vectors="*uid://l8cram8vt8d"
 Items="*uid://crint1knfhk1c"
 Camera="*uid://kry7fsbrigly"
@@ -30,6 +29,9 @@ Display="*uid://dfw5w2q08gcb6"
 Colours="*uid://blpttlhn1bql1"
 Movement="*uid://5oeaudp8i0qv"
 Spells="*uid://bux66wjq6y5u5"
+Log="*uid://ddg48w7tai6mq"
+Players="*uid://1e4owwunrwgk"
+Ui="*uid://b3o6fr40d1pxc"
 
 [display]
 

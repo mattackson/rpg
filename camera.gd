@@ -14,7 +14,7 @@ func register_camera(camera: Camera2D, data: Dictionary) -> void:
 func _ready() -> void:
 	pass
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_pressed("zoom_in"):
 		var new_zoom = _camera.zoom + ZOOM_INCREMENT
 		_camera.zoom = new_zoom.min(MAX_ZOOM)

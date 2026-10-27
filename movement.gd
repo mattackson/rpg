@@ -31,7 +31,6 @@ func move_player_v1_weird(delta: float, player: CharacterBase) -> void:
 	elif player.velocity.y != 0:
 		player._braking_velocity_y = clamp(player._braking_velocity_y + 0.01, 0, 1)
 	
-	var abs_y = abs(player._input_velocity_y)
 	var velocity_change_y = 0
 	if player._braking_velocity_y > 0:
 		velocity_change_y = player.velocity.y * -1 * ease(player._braking_velocity_y, 0.33)

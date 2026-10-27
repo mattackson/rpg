@@ -11,7 +11,7 @@ func _ready() -> void:
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color.WHITE, 0.1)
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func fade_out() -> void:

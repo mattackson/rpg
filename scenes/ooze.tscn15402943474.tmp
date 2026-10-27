@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://b4fh7vvuwlrcy"]
+
+[ext_resource type="Script" uid="uid://rnukcmxkwhle" path="res://ooze.gd" id="1_qmuh7"]
+[ext_resource type="Texture2D" uid="uid://dbqsflocfh2sa" path="res://assets/export/ooze.png" id="2_q0t14"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qmuh7"]
+bounce = 1.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tkach"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_q0t14")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kei1b"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qmuh7"]
+radius = 25.079872
+
+[node name="Ooze" type="RigidBody2D" unique_id=14850315]
+collision_layer = 4
+collision_mask = 15
+physics_material_override = SubResource("PhysicsMaterial_qmuh7")
+gravity_scale = 0.0
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_qmuh7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=672714756]
+sprite_frames = SubResource("SpriteFrames_tkach")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2095910987]
+shape = SubResource("CircleShape2D_kei1b")
+
+[node name="AwarenessArea" type="Area2D" parent="." unique_id=1729351981]
+visible = false
+collision_layer = 4
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AwarenessArea" unique_id=1595932415]
+shape = SubResource("CircleShape2D_qmuh7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="AwarenessArea" to="." method="_on_awareness_area_body_entered"]

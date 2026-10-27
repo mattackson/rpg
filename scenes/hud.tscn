@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cb0bqt6x8uw0h"]
+
+[ext_resource type="Script" uid="uid://ct8hag2d8wff5" path="res://scenes/hud.gd" id="1_oo0fn"]
+[ext_resource type="Texture2D" uid="uid://cswj844p5aumx" path="res://assets/export/bolt-icon.png" id="2_x4jx1"]
+
+[node name="Hud" type="Control" unique_id=1711482554]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+script = ExtResource("1_oo0fn")
+
+[node name="SpellContainer" type="MarginContainer" parent="." unique_id=945343986]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -60.0
+offset_right = 60.0
+grow_vertical = 0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="SpellIcon" type="TextureRect" parent="SpellContainer" unique_id=2075317390]
+custom_minimum_size = Vector2(32, 14)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_x4jx1")
+stretch_mode = 3

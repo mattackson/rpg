@@ -5,6 +5,7 @@ var _spawn_timer: Timer = null;
 var _ooze: PackedScene = preload("res://scenes/ooze.tscn")
 var _num_enemies: int = 0;
 var _cooldown: bool = false;
+var _player: CharacterBase = null;
 
 func _ready() -> void:
 	_spawn_timer = Timer.new()
@@ -12,17 +13,19 @@ func _ready() -> void:
 	_spawn_timer.connect("timeout", _on_spawn_timer)
 	_spawn_timer.autostart = true
 
-func register_spawn_root(spawn_root: Node) -> void:
+func register(spawn_root: Node, player: CharacterBase) -> void:
 	_spawn_root = spawn_root
 	_spawn_root.add_child(_spawn_timer)
+	_player = player
 	
-func on_enemy_defeat(position: Vector2, enemy: String) -> void:
+func _on_enemy_defeat(position: Vector2, enemy: String) -> void:
 	_num_enemies -= 1
 	Items.roll_loot(position, enemy)
 	
 func _spawn() -> void:
-	var ooze = _ooze.instantiate();
-	ooze.position = Vectors.location_near(Player.get_player_position())
+	var ooze: Ooze = _ooze.instantiate();
+	ooze.position = Vectors.location_near(_player.position)
+	ooze.on_death.connect(_on_enemy_defeat)	
 	_spawn_root.add_child(ooze)
 	_cooldown = true
 	_num_enemies += 1
