@@ -14,7 +14,7 @@ var _recently_collided: bool = false
 var _previous_linear_velocity: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
-	pass # Replace with function body.
+	$AwarenessArea.body_entered.connect(_on_awareness_area_body_entered)
 
 func _process(delta: float) -> void:
 	_previous_linear_velocity = linear_velocity
@@ -38,6 +38,7 @@ func _on_defeat() -> void:
 	queue_free()
 
 func _on_awareness_area_body_entered(body: Node2D) -> void:
+	Log.msg("entered awareness body")
 	if body.is_in_group("players"):
 		target = body
 		

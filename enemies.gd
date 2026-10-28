@@ -3,6 +3,7 @@ extends Node
 var _spawn_root: Node = null;
 var _spawn_timer: Timer = null;
 var _ooze: PackedScene = preload("res://scenes/ooze.tscn")
+var _orb: PackedScene = preload("res://scenes/orb.tscn")
 var _num_enemies: int = 0;
 var _player: CharacterBase = null;
 
@@ -22,13 +23,13 @@ func _on_enemy_defeat(position: Vector2, enemy: String) -> void:
 	Items.roll_loot(position, enemy)
 	
 func _spawn() -> void:
-	var ooze: Ooze = _ooze.instantiate();
+	var ooze: Node2D = _orb.instantiate();
 	ooze.position = Vectors.location_near(_player.position)
 	ooze.on_death.connect(_on_enemy_defeat)	
 	_spawn_root.add_child(ooze)
 	_num_enemies += 1
 
 func _on_spawn_timer() -> void:
-	if _num_enemies < 3:
+	if _num_enemies < 1:
 		_spawn()
 	

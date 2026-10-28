@@ -1,5 +1,4 @@
 extends CharacterBody2D
-
 class_name CharacterBase
 
 signal cast(spell: Spell, direction: Vector2, caster: Node2D)
@@ -69,11 +68,11 @@ func _cast_spell() -> void:
 	var direction = _charging_spell.position.direction_to(get_global_mouse_position())
 	_charging_spell.cast(direction)
 	
-func on_collision(linear_velocity: Vector2) -> void:
+func on_collision(collision: KinematicCollision2D) -> void:
 	if _is_damaged:
 		return
 		
-	velocity = linear_velocity * 0.5
+	velocity = -collision.get_normal() * 30
 	
 	_is_damaged = true
 	Timers.after(0.3, _unset_is_damaged)
