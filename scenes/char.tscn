@@ -58,7 +58,7 @@ _data = {
 &"idle": SubResource("Animation_wojmw")
 }
 
-[node name="Character" type="CharacterBody2D" unique_id=1044619691 groups=["players"]]
+[node name="Character" type="CharacterBody2D" unique_id=1447566928 groups=["players"]]
 y_sort_enabled = true
 collision_layer = 8
 script = ExtResource("1_pkhve")

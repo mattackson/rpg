@@ -18,11 +18,10 @@ var _input_velocity_x: float = 0
 var _braking_velocity_x: float = 0
 var _input_velocity_y: float = 0
 var _braking_velocity_y: float = 0
-
 var _charging_spell: Spell = null
-
 var _health: int = 100;
-var _spell: Spells.SpellType = Spells.SpellType.Bolt;
+var _spell: Spells.SpellType = Spells.SpellType.Bolt
+var _is_damaged: bool = false
 
 func get_health() -> int:
 	return _health
@@ -40,23 +39,15 @@ func _ready() -> void:
 	_start_idle()
 
 func _process(delta: float) -> void:
-		#Movement.move_player_v1_weird(delta, self)
-	velocity = Input.get_vector("left", "right", "up", "down") * 130
-	move_and_slide()
-		
-	if Input.is_action_pressed("primary"):
-		if _charging_spell == null:
-			_charging_spell = Spells.create_spell(_spell, position + Vector2(0, -20))
-		else:
-			var charge = delta * 2
-			_charging_spell.scale = Vector2.ONE.min(_charging_spell.scale + Vector2(charge, charge))
-			_charging_spell.position = position + Vector2(0, -20)
-			_charging_spell.rotation = _charging_spell.position.direction_to(get_global_mouse_position()).angle()
-	else:
-		if _charging_spell != null:
-			cast_spell()
-			_charging_spell = null
+	if not _is_damaged:
+		velocity = Input.get_vector("left", "right", "up", "down") * 130
 	
+	move_and_slide()
+	
+	_handle_spellcasting(delta)
+	_animate_sprite()
+	
+func _animate_sprite():
 	if velocity == Vector2.ZERO:
 		if not _is_idle:
 			$Sprite2D.frame = 0
@@ -74,14 +65,25 @@ func _process(delta: float) -> void:
 		_is_idle = false
 		$Sprite2D.frame = 7
 
-func cast_spell() -> void:
+func _cast_spell() -> void:
 	var direction = _charging_spell.position.direction_to(get_global_mouse_position())
-	cast.emit(_charging_spell, direction, self)
+	_charging_spell.cast(direction)
 	
-func on_collision() -> void:
+func on_collision(linear_velocity: Vector2) -> void:
+	if _is_damaged:
+		return
+		
+	velocity = linear_velocity * 0.5
+	
+	_is_damaged = true
+	Timers.after(0.3, _unset_is_damaged)
+	
 	_health -= 10
 	if _health <= 0:
 		player_died.emit()
+
+func _unset_is_damaged():
+	_is_damaged = false
 
 func _stop_idle() -> void:
 	$AnimationPlayer.stop(false)
@@ -105,6 +107,20 @@ func _idle_down() -> void:
 		$Shadow.visible = true
 		$Shadow2.visible = false
 		_is_idle_up = false
+		
+func _handle_spellcasting(delta: float) -> void:
+	if Input.is_action_pressed("primary"):
+		if _charging_spell == null:
+			_charging_spell = Spells.create_spell(_spell, position + Vector2(0, -20), self)
+		else:
+			var charge = delta * 2
+			_charging_spell.scale = Vector2.ONE.min(_charging_spell.scale + Vector2(charge, charge))
+			_charging_spell.position = position + Vector2(0, -20)
+			_charging_spell.rotation = _charging_spell.position.direction_to(get_global_mouse_position()).angle()
+	else:
+		if _charging_spell != null:
+			_cast_spell()
+			_charging_spell = null
 
 func save() -> Dictionary:
 	return {

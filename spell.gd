@@ -16,7 +16,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	position += delta * speed * direction
 
-func set_direction(new_direction: Vector2) -> void:
+func cast(cast_direction: Vector2) -> void:
+	speed = 300
+	_set_direction(cast_direction)
+
+func _set_direction(new_direction: Vector2) -> void:
 	direction = new_direction
 	rotation = new_direction.angle()
 

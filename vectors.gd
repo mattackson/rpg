@@ -17,7 +17,7 @@ func to_dict(val: Vector2) -> Dictionary[String, int]:
 	}
 	
 func location_near(val: Vector2) -> Vector2:
-	var distance = randi_range(10, 30)
+	var distance = randi_range(30, 50)
 	return val + _random_direction() * distance
 	
 func _random_direction() -> Vector2:
