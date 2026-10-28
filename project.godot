@@ -33,13 +33,15 @@ Log="*uid://ddg48w7tai6mq"
 Players="*uid://1e4owwunrwgk"
 Ui="*uid://b3o6fr40d1pxc"
 Timers="*uid://x8fdessdk8r8"
+Draw="*uid://dtjs4vpk3i6gt"
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=320
+window/size/viewport_width=1280
+window/size/viewport_height=640
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
+mouse_cursor/custom_image="uid://bweap787xwyxk"
 
 [global_group]
 

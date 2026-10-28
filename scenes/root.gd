@@ -23,6 +23,8 @@ func _ready() -> void:
 	Items.register_spawn_root(self)
 	Camera.register_camera($Player/Camera2D, data.get(Camera.SAVE_PATH, {}))
 	Ui.register($CanvasLayer/Hud)
+	Draw.register(self)
+	
 
 func _save() -> void:
 	var save_file = FileAccess.open("user://game.json", FileAccess.WRITE)

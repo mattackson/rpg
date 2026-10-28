@@ -18,11 +18,8 @@ func _process(delta: float) -> void:
 
 func cast(cast_direction: Vector2) -> void:
 	speed = 300
-	_set_direction(cast_direction)
-
-func _set_direction(new_direction: Vector2) -> void:
-	direction = new_direction
-	rotation = new_direction.angle()
+	direction = cast_direction
+	rotation = cast_direction.angle()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("on_spell_hit"):

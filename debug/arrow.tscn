@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://nka7r2meatlt"]
+
+[ext_resource type="Script" uid="uid://dro43d2g60j3h" path="res://arrow.gd" id="1_c8rgk"]
+
+[node name="Node2D" type="Node2D" unique_id=1339963364]
+z_index = 100
+script = ExtResource("1_c8rgk")

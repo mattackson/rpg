@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://daade6nm3og6p"]
+
+[ext_resource type="Script" uid="uid://ckv5doad26llj" path="res://scenes/orb.gd" id="1_ktqa0"]
+[ext_resource type="Texture2D" uid="uid://dbqsflocfh2sa" path="res://assets/export/ooze.png" id="2_ubfm6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6cbt"]
+atlas = ExtResource("2_ubfm6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qmuh7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6cbt")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ubfm6"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
+radius = 42.0
+
+[node name="Orb" type="CharacterBody2D" unique_id=608297066]
+modulate = Color(0.3682847, 0.66295224, 0.32109603, 1)
+collision_layer = 4
+collision_mask = 15
+script = ExtResource("1_ktqa0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=182045986]
+sprite_frames = SubResource("SpriteFrames_qmuh7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2113040420]
+shape = SubResource("CircleShape2D_ubfm6")
+
+[node name="AwarenessArea" type="Area2D" parent="." unique_id=1093540480]
+collision_layer = 4
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AwarenessArea" unique_id=1088208243]
+shape = SubResource("CircleShape2D_g4v7s")

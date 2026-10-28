@@ -57,12 +57,9 @@ func _animate_sprite():
 	if velocity.x != 0:
 		$Sprite2D.frame = 5
 		$Sprite2D.flip_h = velocity.x > 0
-	elif velocity.y > 0:
+	elif velocity.y != 0:
 		_is_idle = false
 		$Sprite2D.frame = 6
-	elif velocity.y < 0:
-		_is_idle = false
-		$Sprite2D.frame = 7
 
 func _cast_spell() -> void:
 	var direction = _charging_spell.position.direction_to(get_global_mouse_position())
