@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ckv5doad26llj" path="res://scenes/orb.gd" id="1_ktqa0"]
 [ext_resource type="Texture2D" uid="uid://dbqsflocfh2sa" path="res://assets/export/ooze.png" id="2_ubfm6"]
+[ext_resource type="PackedScene" uid="uid://7wl0mjaeqdcs" path="res://scenes/health_bar.tscn" id="3_g6cbt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g6cbt"]
 atlas = ExtResource("2_ubfm6")
@@ -83,9 +84,11 @@ script = ExtResource("1_ktqa0")
 sprite_frames = SubResource("SpriteFrames_qmuh7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2113040420]
+visible = false
 shape = SubResource("CircleShape2D_ubfm6")
 
 [node name="AwarenessArea" type="Area2D" parent="." unique_id=1093540480]
+visible = false
 collision_layer = 4
 collision_mask = 9
 
@@ -94,3 +97,6 @@ shape = SubResource("CircleShape2D_g4v7s")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1589588432]
 libraries/ = SubResource("AnimationLibrary_g6cbt")
+
+[node name="HealthBar" parent="." unique_id=1950529934 instance=ExtResource("3_g6cbt")]
+position = Vector2(-1, 0)

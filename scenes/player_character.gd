@@ -22,6 +22,7 @@ var _health: int = 100;
 var _spell: Spells.SpellType = Spells.SpellType.Bolt
 var _is_damaged: bool = false
 var _dodge_velocity: Vector2 = Vector2.INF
+var _is_dodge_enabled: bool = true 
 
 func get_health() -> int:
 	return _health
@@ -36,6 +37,9 @@ func set_spell(val: Spells.SpellType) -> void:
 	_spell = val
 
 func _ready() -> void:
+	$HealthBar.width = 14
+	$HealthBar.offset_x = -7
+	$HealthBar.offset_y = -15
 	_start_idle()
 
 func _process(delta: float):
@@ -53,23 +57,19 @@ func _handle_collision(collision: KinematicCollision2D) -> void:
 	pass
 	
 func _handle_dodging() -> bool:
-	if Input.is_action_just_pressed("dodge") && velocity != Vector2.ZERO:
-		var tween = get_tree().create_tween()
-		#_target_velocity = velocity.normalized() * 500
+	if Input.is_action_just_pressed("dodge") and velocity != Vector2.ZERO and _is_dodge_enabled:
 		_velocity_tween = create_tween()
-		tween.tween_property(self, "velocity", velocity.normalized() * 500, 0.1).set_trans(Tween.TRANS_QUINT)
-		tween.tween_property(self, "velocity", velocity, 0.1).set_trans(Tween.TRANS_QUAD)
-		tween.tween_callback(_enable_movement)
+		_velocity_tween.tween_property(self, "velocity", velocity.normalized() * 500, 0.1).set_trans(Tween.TRANS_QUINT)
+		_velocity_tween.tween_property(self, "velocity", velocity, 0.1).set_trans(Tween.TRANS_QUAD)
+		_velocity_tween.tween_callback(_enable_movement)
+		_is_dodge_enabled = false
+		Timers.after(3, _set_dodge_enabled)
 		return true
 	else:
 		return false
-	
-func _dodge(direction: Vector2):
-	_dodge_velocity = direction
-	Timers.after(0.2, _stop_dodging)
-	
-func _stop_dodging():
-	_dodge_velocity = Vector2.INF
+
+func _set_dodge_enabled():
+	_is_dodge_enabled = true
 
 func _animate_sprite():
 	if velocity == Vector2.ZERO:
@@ -99,7 +99,8 @@ func on_collision(collision: KinematicCollision2D) -> void:
 	_is_damaged = true
 	Timers.after(0.3, _unset_is_damaged)
 	
-	_health -= 10
+	_health = max(0, _health -10)
+	$HealthBar.tween_health(_health / 100.0)
 	if _health <= 0:
 		player_died.emit()
 
@@ -118,6 +119,7 @@ func _start_idle() -> void:
 func _idle_up() -> void:
 	if velocity == Vector2.ZERO:
 		$Sprite2D.position.y -= 2
+		$HealthBar.offset_y -= 2
 		$Shadow.visible = false
 		$Shadow2.visible = true
 		_is_idle_up = true
@@ -125,6 +127,7 @@ func _idle_up() -> void:
 func _idle_down() -> void:
 	if _is_idle_up:
 		$Sprite2D.position.y += 2
+		$HealthBar.offset_y += 2
 		$Shadow.visible = true
 		$Shadow2.visible = false
 		_is_idle_up = false

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cb0bqt6x8uw0h" path="res://scenes/hud.tscn" id="2_jh1ax"]
 [ext_resource type="PackedScene" uid="uid://jag6nesgi2c5" path="res://scenes/player_character.tscn" id="2_twpsu"]
 [ext_resource type="PackedScene" uid="uid://cra0w04r2qgux" path="res://scenes/stump.tscn" id="5_jh1ax"]
+[ext_resource type="PackedScene" uid="uid://cjx8r47f2ucpd" path="res://scenes/camera.tscn" id="5_kycxp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_twpsu"]
 texture = ExtResource("1_j5px3")
@@ -67,14 +68,7 @@ tile_set = SubResource("TileSet_lrqlo")
 y_sort_enabled = false
 position = Vector2(17, 7)
 
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=244059163]
-scale = Vector2(3.2, 3.2)
-zoom = Vector2(2, 2)
-limit_enabled = false
-limit_left = -240
-limit_top = -240
-limit_right = 240
-limit_bottom = 240
+[node name="Camera" parent="Player" unique_id=940443470 instance=ExtResource("5_kycxp")]
 
 [node name="Stump" parent="." unique_id=1000754725 instance=ExtResource("5_jh1ax")]
 position = Vector2(-8, 14)

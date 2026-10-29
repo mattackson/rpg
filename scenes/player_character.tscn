@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dab5511odgahj" path="res://scenes/player_character.gd" id="1_6r27q"]
 [ext_resource type="Texture2D" uid="uid://18at2fx4fwgs" path="res://assets/export/char.png" id="1_wojmw"]
+[ext_resource type="PackedScene" uid="uid://7wl0mjaeqdcs" path="res://scenes/health_bar.tscn" id="3_kww55"]
 
 [sub_resource type="Animation" id="Animation_pkhve"]
 length = 0.001
@@ -88,3 +89,5 @@ polygon = PackedVector2Array(-5, 7, -5, 8, -6, 8, -6, 10, -5, 10, -5, 11, 5, 11,
 visible = false
 color = Color(0.19607843, 0.19607843, 0.19607843, 0.6313726)
 polygon = PackedVector2Array(-5, 8, -5, 9, -6, 9, -6, 10, -5, 10, -5, 11, 5, 11, 5, 10, 6, 10, 6, 9, 5, 9, 5, 8)
+
+[node name="HealthBar" parent="." unique_id=1950529934 instance=ExtResource("3_kww55")]

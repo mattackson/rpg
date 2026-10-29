@@ -2,7 +2,6 @@ extends Node
 
 var _spawn_root: Node = null;
 var _spawn_timer: Timer = null;
-var _ooze: PackedScene = preload("res://scenes/ooze.tscn")
 var _orb: PackedScene = preload("res://scenes/orb.tscn")
 var _num_enemies: int = 0;
 var _player: PlayerCharacter = null;

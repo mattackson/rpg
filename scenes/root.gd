@@ -21,20 +21,20 @@ func _ready() -> void:
 	Spells.register_player(self, $Player)
 	Enemies.register(self, $Player)
 	Items.register_spawn_root(self)
-	Camera.register_camera($Player/Camera2D, data.get(Camera.SAVE_PATH, {}))
+	Cameras.register_camera($Player/Camera, data.get(Cameras.SAVE_PATH, {}))
 	Ui.register($CanvasLayer/Hud)
 	Draw.register(self)
-	
 
 func _save() -> void:
 	var save_file = FileAccess.open("user://game.json", FileAccess.WRITE)
 	Log.info("Save file", {"path": save_file.get_path_absolute()})
 	var data = {
 		"player": $Player.save(),
-		"camera": Camera.save()
+		"camera": $Player/Camera.save()
 	}
 	save_file.store_line(JSON.stringify(data))
 	
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("save"):
 		_save()
+	

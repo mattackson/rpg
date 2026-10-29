@@ -2,7 +2,6 @@ extends Camera2D
 
 func _ready() -> void:
 	pass
-	get_tree().create_tween()
 
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("zoom_in"):

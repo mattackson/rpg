@@ -24,7 +24,7 @@ config/icon="res://icon.svg"
 Enemies="*uid://bt6da8ht8dwjq"
 Vectors="*uid://l8cram8vt8d"
 Items="*uid://crint1knfhk1c"
-Camera="*uid://kry7fsbrigly"
+Cameras="*uid://kry7fsbrigly"
 Display="*uid://dfw5w2q08gcb6"
 Colours="*uid://blpttlhn1bql1"
 Movement="*uid://5oeaudp8i0qv"
@@ -102,6 +102,11 @@ pause={
 dodge={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194325,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+slow_time={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":86,"key_label":0,"unicode":118,"location":0,"echo":false,"script":null)
 ]
 }
 

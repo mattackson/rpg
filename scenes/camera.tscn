@@ -2,5 +2,14 @@
 
 [ext_resource type="Script" uid="uid://dnwgbgpuvb6gl" path="res://scenes/camera.gd" id="1_cvpoc"]
 
-[node name="Camera2D" type="Camera2D" unique_id=940443470]
+[node name="Camera" type="Camera2D" unique_id=940443470]
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_horizontal_offset = 1.0
+drag_left_margin = 0.05
+drag_top_margin = 0.05
+drag_right_margin = 0.05
+drag_bottom_margin = 0.05
 script = ExtResource("1_cvpoc")
