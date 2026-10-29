@@ -10,4 +10,4 @@ func _on_spell_hit() -> void:
 	speed = 0
 	$AnimationPlayer.play("on_spell_hit")
 	await $AnimationPlayer.animation_finished
-	
+	queue_free()

@@ -30,6 +30,6 @@ func _spawn() -> void:
 	_num_enemies += 1
 
 func _on_spawn_timer() -> void:
-	if _num_enemies < 1:
+	if _num_enemies < 0:
 		_spawn()
 	

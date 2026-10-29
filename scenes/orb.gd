@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 	if health <= 0:
 		_on_defeat()
 
-func _process_impl(delta: float):
+func _control_and_set_velocity(delta: float):
 	if target:
 		var distance_to_target = (target.position - position).length()
 		if distance_to_target < 50 && !_is_attack_on_cooldown:
@@ -40,5 +40,6 @@ func _unset_attack_on_cooldown():
 	_is_attack_on_cooldown = false
 
 func on_spell_hit(_spell: Spells.SpellType, direction: Vector2, damage: int, caster: Node2D) -> void:
+	target = caster
 	health -= damage
 	_recoil(direction * damage * 10, 0.2, 0.2)

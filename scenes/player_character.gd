@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Character
 class_name PlayerCharacter
 
 signal cast(spell: Spell, direction: Vector2, caster: Node2D)
@@ -39,16 +39,29 @@ func _ready() -> void:
 	_start_idle()
 
 func _process(delta: float):
-	if not _is_damaged:
-		velocity = Input.get_vector("left", "right", "up", "down") * 130
-	
-	move_and_slide()
 	_handle_spellcasting(delta)
 	_animate_sprite()
 	
-func _handle_dodging():
-	if Input.is_action_just_pressed("dodge"):
-		_dodge(Vector2.ZERO)
+func _control_and_set_velocity(delta: float):
+	if _handle_dodging():
+		return
+		
+	if not _is_damaged:
+		velocity = Input.get_vector("left", "right", "up", "down") * 130
+	
+func _handle_collision(collision: KinematicCollision2D) -> void:
+	pass
+	
+func _handle_dodging() -> bool:
+	if Input.is_action_just_pressed("dodge") && velocity != Vector2.ZERO:
+		print("Dodging")
+		ease_velocity_to(velocity.normalized() * 300, 1, 0.1)
+		
+		
+		#_recoil(velocity.normalized() * 700, 1, 0.2, velocity)
+		return true
+	else:
+		return false
 	
 func _dodge(direction: Vector2):
 	_dodge_velocity = direction
@@ -80,7 +93,7 @@ func on_collision(collision: KinematicCollision2D) -> void:
 	if _is_damaged:
 		return
 		
-	velocity = -collision.get_normal() * 30
+	_recoil(-collision.get_normal() * 300, 0.3, 0.5)
 	
 	_is_damaged = true
 	Timers.after(0.3, _unset_is_damaged)

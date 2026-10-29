@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://jag6nesgi2c5"]
 
-[ext_resource type="Script" uid="uid://dab5511odgahj" path="res://scenes/char.gd" id="1_pkhve"]
+[ext_resource type="Script" uid="uid://dab5511odgahj" path="res://scenes/player_character.gd" id="1_6r27q"]
 [ext_resource type="Texture2D" uid="uid://18at2fx4fwgs" path="res://assets/export/char.png" id="1_wojmw"]
 
 [sub_resource type="Animation" id="Animation_pkhve"]
@@ -17,6 +17,9 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+
+[sub_resource type="Animation" id="Animation_6r27q"]
+resource_name = "dodge"
 
 [sub_resource type="Animation" id="Animation_wojmw"]
 resource_name = "idle"
@@ -55,13 +58,14 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pkhve"]
 _data = {
 &"RESET": SubResource("Animation_pkhve"),
+&"dodge": SubResource("Animation_6r27q"),
 &"idle": SubResource("Animation_wojmw")
 }
 
 [node name="Character" type="CharacterBody2D" unique_id=1447566928 groups=["players"]]
 y_sort_enabled = true
 collision_layer = 8
-script = ExtResource("1_pkhve")
+script = ExtResource("1_6r27q")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=122140493]
 y_sort_enabled = true
