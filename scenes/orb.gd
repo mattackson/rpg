@@ -31,7 +31,7 @@ func _control_and_set_velocity(delta: float):
 			
 func _attack_target():
 	var attack_velocity = (target.position - position).normalized() * _attack_speed
-	ease_velocity_to(attack_velocity, 0.3, 0.1)
+	tween_velocity(attack_velocity, 0.3)
 	_is_attack_on_cooldown = true
 	Timers.after(2, _unset_attack_on_cooldown)
 	Log.info("attacking", {"current_velocity": velocity, "attack_velocity": attack_velocity, "current_speed": velocity.length()})
@@ -42,4 +42,4 @@ func _unset_attack_on_cooldown():
 func on_spell_hit(_spell: Spells.SpellType, direction: Vector2, damage: int, caster: Node2D) -> void:
 	target = caster
 	health -= damage
-	_recoil(direction * damage * 10, 0.2, 0.2)
+	_recoil(direction * damage * 10, 0.2)

@@ -20,7 +20,7 @@ func _handle_collision(collision: KinematicCollision2D) -> void:
 	if collision.get_collider().has_method("on_collision"):
 		collision.get_collider().on_collision(collision)
 	var recoil_velocity = (velocity * -2).limit_length(max_recoil_speed())
-	_recoil(recoil_velocity, 1.0, 0.4)
+	_recoil(recoil_velocity, 0.5, Tween.TRANS_QUAD)
 	
 func _move_to_target(delta: float):
 	velocity = position.direction_to(target.position) * delta * speed

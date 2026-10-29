@@ -54,11 +54,12 @@ func _handle_collision(collision: KinematicCollision2D) -> void:
 	
 func _handle_dodging() -> bool:
 	if Input.is_action_just_pressed("dodge") && velocity != Vector2.ZERO:
-		print("Dodging")
-		ease_velocity_to(velocity.normalized() * 300, 1, 0.1)
-		
-		
-		#_recoil(velocity.normalized() * 700, 1, 0.2, velocity)
+		var tween = get_tree().create_tween()
+		#_target_velocity = velocity.normalized() * 500
+		_velocity_tween = create_tween()
+		tween.tween_property(self, "velocity", velocity.normalized() * 500, 0.1).set_trans(Tween.TRANS_QUINT)
+		tween.tween_property(self, "velocity", velocity, 0.1).set_trans(Tween.TRANS_QUAD)
+		tween.tween_callback(_enable_movement)
 		return true
 	else:
 		return false
@@ -93,7 +94,7 @@ func on_collision(collision: KinematicCollision2D) -> void:
 	if _is_damaged:
 		return
 		
-	_recoil(-collision.get_normal() * 300, 0.3, 0.5)
+	_recoil(-collision.get_normal() * 300, 0.3, Tween.TRANS_QUAD)
 	
 	_is_damaged = true
 	Timers.after(0.3, _unset_is_damaged)
