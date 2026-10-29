@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name CharacterBase
+class_name PlayerCharacter
 
 signal cast(spell: Spell, direction: Vector2, caster: Node2D)
 signal player_died();
@@ -43,7 +43,6 @@ func _process(delta: float):
 		velocity = Input.get_vector("left", "right", "up", "down") * 130
 	
 	move_and_slide()
-	
 	_handle_spellcasting(delta)
 	_animate_sprite()
 	

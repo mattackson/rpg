@@ -5,7 +5,7 @@ signal player_spell_changed(new_spell: Spell);
 
 const SAVE_PATH: String = "player"
 
-var _player: CharacterBase = null;
+var _player: PlayerCharacter = null;
 	
 func get_player_position() -> Vector2:
 	return _player.position
@@ -17,7 +17,7 @@ func set_player_spell(val: Spells.SpellType) -> void:
 	_player.set_spell(val)
 	player_spell_changed.emit(val)
 
-func register_player(player: CharacterBase, data: Dictionary) -> void:
+func register_player(player: PlayerCharacter, data: Dictionary) -> void:
 	_player = player
 	if data:
 		_load(data)

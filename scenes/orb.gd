@@ -16,27 +16,19 @@ func max_recoil_speed() -> float:
 func _ready() -> void:
 	super()
 	Timers.after(2, _unset_attack_on_cooldown)
-
-func _physics_process(delta: float) -> void:
-	if is_easing_velocity():
-		_handle_easing_velocity(delta)
-	elif target:
-		var distance_to_target = (target.position - position).length()
-		if distance_to_target < 50 && !_is_attack_on_cooldown:
-			$AnimationPlayer.play("attack")
-		else:
-			_move_to_target(delta)
-		
-	var collision = move_and_collide(velocity * delta)
-	if collision:
-		if collision.get_collider().has_method("on_collision"):
-			collision.get_collider().on_collision(collision)
-		_recoil(velocity * -2, 1.0, 0.4)
 			
 func _process(delta: float) -> void:
 	if health <= 0:
 		_on_defeat()
 
+func _process_impl(delta: float):
+	if target:
+		var distance_to_target = (target.position - position).length()
+		if distance_to_target < 50 && !_is_attack_on_cooldown:
+			$AnimationPlayer.play("attack")
+		else:
+			_move_to_target(delta)
+			
 func _attack_target():
 	var attack_velocity = (target.position - position).normalized() * _attack_speed
 	ease_velocity_to(attack_velocity, 0.3, 0.1)
@@ -49,4 +41,4 @@ func _unset_attack_on_cooldown():
 
 func on_spell_hit(_spell: Spells.SpellType, direction: Vector2, damage: int, caster: Node2D) -> void:
 	health -= damage
-	_recoil(direction * damage * 80, 0.2, 0.2)
+	_recoil(direction * damage * 10, 0.2, 0.2)

@@ -1,6 +1,6 @@
 extends Node
 
-func move_player_v1_weird(delta: float, player: CharacterBase) -> void:
+func move_player_v1_weird(delta: float, player: PlayerCharacter) -> void:
 	if Input.is_action_pressed("left"):
 		player._braking_velocity_x = 0
 		player._input_velocity_x = clamp(player._input_velocity_x - 0.3, -1.0, 0) 

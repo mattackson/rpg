@@ -5,7 +5,7 @@ var _spawn_timer: Timer = null;
 var _ooze: PackedScene = preload("res://scenes/ooze.tscn")
 var _orb: PackedScene = preload("res://scenes/orb.tscn")
 var _num_enemies: int = 0;
-var _player: CharacterBase = null;
+var _player: PlayerCharacter = null;
 
 func _ready() -> void:
 	_spawn_timer = Timer.new()
@@ -13,7 +13,7 @@ func _ready() -> void:
 	_spawn_timer.connect("timeout", _on_spawn_timer)
 	_spawn_timer.autostart = true
 
-func register(spawn_root: Node, player: CharacterBase) -> void:
+func register(spawn_root: Node, player: PlayerCharacter) -> void:
 	_spawn_root = spawn_root
 	_spawn_root.add_child(_spawn_timer)
 	_player = player

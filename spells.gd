@@ -13,7 +13,7 @@ var spells: Dictionary[SpellType, Variant] = {
 	SpellType.Fireball: fireball_texture
 }
 
-func register_player(root: Node2D, player: CharacterBase) -> void:
+func register_player(root: Node2D, player: PlayerCharacter) -> void:
 	_root = root
 
 func create_spell(spell: SpellType, position: Vector2, caster: Node2D) -> Spell:
