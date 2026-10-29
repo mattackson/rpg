@@ -31,15 +31,16 @@ Movement="*uid://5oeaudp8i0qv"
 Spells="*uid://bux66wjq6y5u5"
 Log="*uid://ddg48w7tai6mq"
 Players="*uid://1e4owwunrwgk"
-Ui="*uid://b3o6fr40d1pxc"
+UI="*uid://b3o6fr40d1pxc"
 Timers="*uid://x8fdessdk8r8"
 Draw="*uid://dtjs4vpk3i6gt"
+Game="*uid://beriuf2ehlqc2"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=640
-window/stretch/mode="viewport"
+window/size/viewport_width=640
+window/size/viewport_height=320
+window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 mouse_cursor/custom_image="uid://bweap787xwyxk"
 

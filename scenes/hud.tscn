@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ct8hag2d8wff5" path="res://scenes/hud.gd" id="1_oo0fn"]
 [ext_resource type="Texture2D" uid="uid://cswj844p5aumx" path="res://assets/export/bolt-icon.png" id="2_x4jx1"]
+[ext_resource type="FontFile" uid="uid://dkdvrejamfekb" path="res://m5x7.ttf" id="3_5ysmq"]
 
 [node name="Hud" type="Control" unique_id=1711482554]
 layout_mode = 3
@@ -32,3 +33,22 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_x4jx1")
 stretch_mode = 3
+
+[node name="CenterTextContainer" type="MarginContainer" parent="." unique_id=1651435673]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterTextContainer" unique_id=1273082390]
+modulate = Color(0.7176471, 0.13725491, 0, 1)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_5ysmq")
+theme_override_font_sizes/normal_font_size = 80
+horizontal_alignment = 1
+vertical_alignment = 1

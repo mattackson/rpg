@@ -12,7 +12,7 @@ func enemy_name() -> String:
 
 func max_recoil_speed() -> float:
 	return 200
-
+	
 func _ready() -> void:
 	super()
 	Timers.after(2, _unset_attack_on_cooldown)
@@ -21,6 +21,7 @@ func _ready() -> void:
 	$HealthBar.width = 14
 			
 func _process(delta: float) -> void:
+	super(delta)
 	if health <= 0:
 		_on_defeat()
 

@@ -7,9 +7,9 @@ const ZOOM_INCREMENT: Vector2 = Vector2(0.1, 0.1)
 
 var _camera: Camera2D = null;
 
-func register_camera(camera: Camera2D, data: Dictionary) -> void:
+func register_camera(camera: Camera2D) -> void:
 	_camera = camera
-	_load(data)
+	#_load(data)
 
 func _load(data: Dictionary) -> void:
 	_camera.zoom = Vectors.from_dict(data.get("zoom", {}), MIN_ZOOM)

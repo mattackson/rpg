@@ -19,11 +19,14 @@ func _ready() -> void:
 	
 	Players.register_player($Player, data.get(Players.SAVE_PATH, {}))
 	Spells.register_player(self, $Player)
-	Enemies.register(self, $Player)
+	Enemies.register(self, [$Spawner, $Spawner2, $Spawner3, $Spawner4])
+	Enemies.set_default_target($Stump)
 	Items.register_spawn_root(self)
-	Cameras.register_camera($Player/Camera, data.get(Cameras.SAVE_PATH, {}))
-	Ui.register($CanvasLayer/Hud)
+	Cameras.register_camera($Player/Camera)
+	UI.register($CanvasLayer/Hud)
 	Draw.register(self)
+	
+	Game.start_game()
 
 func _save() -> void:
 	var save_file = FileAccess.open("user://game.json", FileAccess.WRITE)
@@ -37,4 +40,11 @@ func _save() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("save"):
 		_save()
+		
+	if Input.is_action_just_pressed("slow_time"):
+		Game.time_scale = 0.5
+		Timers.after(5, _unset_slow_time)
+		
+func _unset_slow_time():
+	Game.time_scale = 1.0
 	

@@ -7,17 +7,16 @@ class_name Character
 signal ease_velocity_finished()
 
 var target: Node2D = null
-var speed: float = 3000
 var _velocity_tween: Tween = null
 
 @abstract func _handle_collision(collision: KinematicCollision2D) -> void
 @abstract func _control_and_set_velocity(delta: float) -> void
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	if not _velocity_tween:
 		_control_and_set_velocity(delta)
 		
-	var collision = move_and_collide(velocity * delta)
+	var collision = move_and_collide(velocity * delta * Game.time_scale)
 	if collision:
 		_handle_collision(collision)
 

@@ -10,18 +10,14 @@ const MIN_ZOOM = Vector2(1, 1)
 const MAX_ZOOM = Vector2(4, 4)
 const SAVE_PATH: String = "player"
 
+var _speed: float = 7000
 var _is_idle_up: bool = false;
 var _is_idle: bool = true;
 
-var _input_velocity_x: float = 0
-var _braking_velocity_x: float = 0
-var _input_velocity_y: float = 0
-var _braking_velocity_y: float = 0
 var _charging_spell: Spell = null
 var _health: int = 100;
-var _spell: Spells.SpellType = Spells.SpellType.Bolt
+var _spell: Spells.SpellType = Spells.SpellType.Fireball
 var _is_damaged: bool = false
-var _dodge_velocity: Vector2 = Vector2.INF
 var _is_dodge_enabled: bool = true 
 
 func get_health() -> int:
@@ -43,6 +39,7 @@ func _ready() -> void:
 	_start_idle()
 
 func _process(delta: float):
+	super(delta)
 	_handle_spellcasting(delta)
 	_animate_sprite()
 	
@@ -51,7 +48,7 @@ func _control_and_set_velocity(delta: float):
 		return
 		
 	if not _is_damaged:
-		velocity = Input.get_vector("left", "right", "up", "down") * 130
+		velocity = Input.get_vector("left", "right", "up", "down") * delta * _speed * Game.time_scale
 	
 func _handle_collision(collision: KinematicCollision2D) -> void:
 	pass
@@ -137,7 +134,7 @@ func _handle_spellcasting(delta: float) -> void:
 		if _charging_spell == null:
 			_charging_spell = Spells.create_spell(_spell, position + Vector2(0, -20), self)
 		else:
-			var charge = delta * 2
+			var charge = delta * 2 * Game.time_scale
 			_charging_spell.scale = Vector2.ONE.min(_charging_spell.scale + Vector2(charge, charge))
 			_charging_spell.position = position + Vector2(0, -20)
 			_charging_spell.rotation = _charging_spell.position.direction_to(get_global_mouse_position()).angle()

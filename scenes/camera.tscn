@@ -3,10 +3,12 @@
 [ext_resource type="Script" uid="uid://dnwgbgpuvb6gl" path="res://scenes/camera.gd" id="1_cvpoc"]
 
 [node name="Camera" type="Camera2D" unique_id=940443470]
+zoom = Vector2(2, 2)
+limit_left = -230
+limit_top = -238
+limit_right = 248
+limit_bottom = 238
 position_smoothing_enabled = true
-position_smoothing_speed = 10.0
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
 drag_horizontal_offset = 1.0
 drag_left_margin = 0.05
 drag_top_margin = 0.05

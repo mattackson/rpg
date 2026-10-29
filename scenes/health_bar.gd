@@ -11,9 +11,9 @@ func _process(delta: float) -> void:
 
 func _draw() -> void:
 	var healthy_width = width * health
-	draw_rect(Rect2(offset_x, offset_y, width, 2), Color.DARK_RED, true, 1)
-	draw_rect(Rect2(offset_x, offset_y, healthy_width, 2), Color.LIME_GREEN, true, 1)
+	draw_rect(Rect2(offset_x, offset_y, width, 2), Color.DARK_RED, true)
+	draw_rect(Rect2(offset_x, offset_y, healthy_width, 2), Color.LIME_GREEN, true)
 	
 func tween_health(val: float):
 	_health_tween = create_tween()
-	_health_tween.tween_property(self, "health", val, 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	_health_tween.tween_property(self, "health", val, 0.1).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
