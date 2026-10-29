@@ -6,7 +6,6 @@ signal on_death(position: Vector2, enemy: String)
 
 var target: Node2D = null
 var speed: float = 3000
-var _recently_collided: bool = false
 var _recoil_target: Vector2 = Vector2.INF
 var _recoiling_from: Vector2 = Vector2.INF
 var _ease_velocity_progress: float

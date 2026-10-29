@@ -21,6 +21,7 @@ var _charging_spell: Spell = null
 var _health: int = 100;
 var _spell: Spells.SpellType = Spells.SpellType.Bolt
 var _is_damaged: bool = false
+var _dodge_velocity: Vector2 = Vector2.INF
 
 func get_health() -> int:
 	return _health
@@ -37,7 +38,7 @@ func set_spell(val: Spells.SpellType) -> void:
 func _ready() -> void:
 	_start_idle()
 
-func _process(delta: float) -> void:
+func _process(delta: float):
 	if not _is_damaged:
 		velocity = Input.get_vector("left", "right", "up", "down") * 130
 	
@@ -46,6 +47,17 @@ func _process(delta: float) -> void:
 	_handle_spellcasting(delta)
 	_animate_sprite()
 	
+func _handle_dodging():
+	if Input.is_action_just_pressed("dodge"):
+		_dodge(Vector2.ZERO)
+	
+func _dodge(direction: Vector2):
+	_dodge_velocity = direction
+	Timers.after(0.2, _stop_dodging)
+	
+func _stop_dodging():
+	_dodge_velocity = Vector2.INF
+
 func _animate_sprite():
 	if velocity == Vector2.ZERO:
 		if not _is_idle:
